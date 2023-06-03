@@ -1,0 +1,43 @@
+///Faça um programa que peça para o usuário entrar um texto que deseja procurar (uma palavra) e que em
+///seguida leia um arquivo texto do disco e procure por esta palavra no arquivo. Caso seja encontrada a
+///palavra digitada pelo usuário em alguma das linhas do arquivo texto lido do disco, o programa deverá
+///exibir na tela o número da linha do arquivo onde encontrou esta ocorrência da palavra, bem como o
+///conteúdo da linha onde se encontra a palavra procurada. Dica: use o comando “strstr” para procurar a
+///palavra.
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char plv[50], palavra[50];
+    int i, a, b;
+    a= 0;
+
+    FILE *Arq;
+    Arq = fopen("Texto.txt", "rt");
+     if (Arq == NULL)
+     {
+          printf ("ERRO!\n");
+          exit(1);
+     }
+
+     printf(" de a palavra que buscas q eu te indico a linha q ela esta\n");
+     scanf("%s", plv);
+
+     while( !(feof(Arq)))
+     {
+         a++;
+         fflush(stdin);
+         fscanf(Arq, "%s", palavra);
+         if(strcmp(palavra, plv)==0)
+         {
+             break;
+         }
+     }
+
+     printf("Linha %d: %s \n", a, palavra);
+     fclose(Arq);
+
+    return 0;
+}
